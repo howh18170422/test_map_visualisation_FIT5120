@@ -5,7 +5,7 @@ import plotly.express as px
 import dash_bootstrap_components as dbc
 
 forecast_path = 'https://github.com/howh18170422/test_map_visualisation_FIT5120/raw/main/df_forecast_cleaned.csv'
-localities_path= 'https://github.com/howh18170422/test_map_visualisation_FIT5120/blob/main/vic_localities_cleaned/vic_localities_cleaned.shp?raw=true'
+localities_path= 'https://raw.githubusercontent.com/howh18170422/test_map_visualisation_FIT5120/main/vic_localities_cleaned.geojson'
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.FLATLY])
 server = app.server
