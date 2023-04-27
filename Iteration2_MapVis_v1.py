@@ -3,6 +3,7 @@ import pandas as pd
 import geopandas as gpd
 import plotly.express as px
 import dash_bootstrap_components as dbc
+import urllib.request
 
 forecast_path = 'https://github.com/howh18170422/test_map_visualisation_FIT5120/raw/main/df_forecast_cleaned.csv'
 localities_path= 'https://raw.githubusercontent.com/howh18170422/test_map_visualisation_FIT5120/main/vic_localities_cleaned.geojson'
@@ -63,7 +64,8 @@ app.layout = html.Div([
 
 def update_choropleth(housing_type):
     df_forecast = pd.read_csv(forecast_path, index_col=0)
-    localities_df = gpd.read_file(localities_path,encoding='utf-8')
+    with urllib.request.urlopen(localities_path) as url:
+        localities_df = gpd.read_file(url)
     
     geo_df = localities_df.merge(df_forecast[df_forecast['Housing_Type'] == housing_type], on='Suburb').set_index('Suburb')
     
